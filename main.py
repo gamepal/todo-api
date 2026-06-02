@@ -30,3 +30,8 @@ def get_todo(todo_id: int):
     if todo_id not in todos:
         raise HTTPException(status_code=404, detail="Todo not found")
     return {"id": todo_id, **todos[todo_id]}
+
+@app.delete("/todos/{todo_id}")
+def delete_todo(todo_id: int):
+    del todos[todo_id]
+    return {"deleted": todo_id}
